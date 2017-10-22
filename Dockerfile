@@ -1,3 +1,5 @@
 FROM composer:latest
-RUN mkdir /composer
-RUN composer --working-dir=/composer global require hirak/prestissimo
+RUN addgroup -S composer && adduser -S -g composer composer
+ENV COMPOSER_HOME /home/composer
+USER composer
+RUN composer global require hirak/prestissimo
